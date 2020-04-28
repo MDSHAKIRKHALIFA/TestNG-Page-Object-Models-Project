@@ -1,33 +1,44 @@
 package com.crm.qa.allTestCases;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.crm.qa.base.TestBase;
 import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
+import com.crm.qa.pages.TasksPage;
+import com.crm.qa.util.Testutil;
 
-public class LoginPageTest extends TestBase{
+public class TasksPageTest extends TestBase{
+
+	HomePage  homepage;
 	LoginPage loginpage;
-	HomePage homepage;
-	
-	public LoginPageTest() {
+	Testutil  testUtil;
+	TasksPage tasksPage;
+
+	public TasksPageTest() {
 		super();
 	}
-	
+
 	@BeforeMethod
-	public void setUp() {
+	public void setUp() throws InterruptedException {
 		initialization();
 		loginpage = new LoginPage();
-	}
-	
-	@Test(priority = 1)
-	public void login() {
+		testUtil = new Testutil();
+		tasksPage = new TasksPage();
 		homepage = loginpage.login(proper.getProperty("username"), proper.getProperty("password"));
+		homepage.clickOnDealsLick();
 	}
-	
+
+	@Test
+	public void verifytaskslevel() {
+		Assert.assertTrue(tasksPage.verifytasksPageLevel());
+	}
+
 	@AfterMethod
 	public void closeDown() {
 		driver.quit();
 	}
+
 }
 //Shakir

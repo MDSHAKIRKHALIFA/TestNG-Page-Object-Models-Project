@@ -1,15 +1,12 @@
 package com.crm.qa.base;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import com.crm.qa.util.Testutil;
 
 public class TestBase {
@@ -28,14 +25,15 @@ public class TestBase {
 			e.printStackTrace();
 		}	
 	}
+
 	public static void initialization() {
 		String browserName = proper.getProperty("browser");
-		
+
 		if(browserName.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver", "/Users/shakir/Desktop/All-Drivers/chromedriver");
 			driver = new ChromeDriver();
 		}
-		
+
 		else if (browserName.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver", "/Users/shakir/D/All-Drivers/geckodriver");
 			driver = new FirefoxDriver();
@@ -45,8 +43,6 @@ public class TestBase {
 		driver.manage().timeouts().pageLoadTimeout(Testutil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(Testutil.IMPLICIT_WAIT, TimeUnit.SECONDS);
 		driver.get(proper.getProperty("url"));
-		
-		
 	}
-
 }
+//Shakir

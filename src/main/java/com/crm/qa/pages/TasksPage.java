@@ -3,19 +3,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.crm.qa.base.TestBase;
+public class TasksPage extends TestBase{
 
-public class DealsPage  extends TestBase{
-
-	public DealsPage() {
+	public TasksPage() {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath="//span[contains(text(),'Deals')]")
-	WebElement dealLevel;
+	@FindBy(xpath="//span[contains(text(),'Tasks')]")
+	WebElement tasksPageLevel;
 
-	public boolean validateDealPageLevel() {
-		return dealLevel.isDisplayed();
+	public boolean verifytasksPageLevel() {
+		return tasksPageLevel.isDisplayed();
 	}
-
 }
 //Shakir
