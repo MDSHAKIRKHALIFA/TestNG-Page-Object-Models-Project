@@ -7,12 +7,17 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+
 import com.crm.qa.util.Testutil;
+import com.crm.qa.util.WebEventListener;
 
 public class TestBase {
 
 	public static WebDriver driver;
 	public static Properties proper;
+	public static EventFiringWebDriver eventDriver;
+	public static WebEventListener eventListener;
 
 	public TestBase() {
 		try {
@@ -25,7 +30,6 @@ public class TestBase {
 			e.printStackTrace();
 		}	
 	}
-
 	public static void initialization() {
 		String browserName = proper.getProperty("browser");
 
@@ -38,6 +42,13 @@ public class TestBase {
 			System.setProperty("webdriver.gecko.driver", "/Users/shakir/D/All-Drivers/geckodriver");
 			driver = new FirefoxDriver();
 		}
+		
+		eventDriver = new EventFiringWebDriver(driver);
+		eventListener = new WebEventListener();
+		eventDriver.register(eventListener);
+		driver = eventDriver ;
+		
+		
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(Testutil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);

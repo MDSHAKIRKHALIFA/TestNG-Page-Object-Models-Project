@@ -1,8 +1,15 @@
 package com.crm.qa.pages;
 import java.util.concurrent.TimeUnit;
+
+
+
+
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
 import com.crm.qa.base.TestBase;
 
 public class ContactsPage extends TestBase{
@@ -22,6 +29,10 @@ public class ContactsPage extends TestBase{
 	@FindBy(xpath="//button[@class='ui linkedin button']")
 	WebElement saveBtn;
 
+	
+	@FindBy(xpath="//div[@name='month']")
+	String selectMonth;
+	
 	public ContactsPage() {
 		PageFactory.initElements(driver, this);
 	}
@@ -30,12 +41,15 @@ public class ContactsPage extends TestBase{
 		return contactsLevel.isDisplayed();
 	}
 
-	public void ClickcreatNewContact() throws InterruptedException{
+	public void ClickcreatNewContact(String fName, String lName){
 		cteateNewContacts.click();
-		driver.navigate().refresh();
-		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-		firstName.sendKeys("Md");
-		lastName.sendKeys("Shakir");
+		//driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		firstName.sendKeys(fName);
+		lastName.sendKeys(lName);
+		
+//		Select select = new Select(driver.findElement(By.xpath(selectMonth)));
+//		select.selectByVisibleText(month);
+		
 		saveBtn.click();
 	}
 }

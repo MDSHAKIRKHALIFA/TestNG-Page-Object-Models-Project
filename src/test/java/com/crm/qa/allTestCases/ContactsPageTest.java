@@ -2,6 +2,7 @@ package com.crm.qa.allTestCases;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.crm.qa.base.TestBase;
 import com.crm.qa.pages.ContactsPage;
@@ -15,6 +16,7 @@ public class ContactsPageTest extends TestBase{
 	HomePage homepage;
 	LoginPage loginpage;
 	Testutil testUtil;
+	String sheetsName = "Contacts";
 
 	public ContactsPageTest() {
 		super();
@@ -27,19 +29,35 @@ public class ContactsPageTest extends TestBase{
 		contactsPage = new ContactsPage();
 		testUtil = new Testutil();
 		homepage = loginpage.login(proper.getProperty("username"), proper.getProperty("password"));
-		homepage.clickOnContactsLick();
+		contactsPage = homepage.clickOnContactsLick();
 	}
 
 	@Test(priority = 1)
 	public void varifyContactsPageTitleTest() {
 		Assert.assertTrue(contactsPage.verifyContactsPageLevel(), "Contacts level is misssting from the page");
 	}
+	
+	@DataProvider
+	public Object[][] getCRMTestData() {
+		Object data[][] = Testutil.getTestData(sheetsName);
+		return data;
+	}
 
-	@Test(priority = 2)
-	public void CreateNewContacts() throws InterruptedException{
-		contactsPage.ClickcreatNewContact();	
-	}	
-
+	@Test(priority = 2, dataProvider="getCRMTestData")
+	public void CreateNewContacts(String FirstName, String LastName){
+		//contactsPage.ClickcreatNewContact("Md", "Shakir");
+		homepage.clickOnContactsLick();
+		driver.navigate().refresh();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.navigate().refresh();
+		contactsPage.ClickcreatNewContact(FirstName, LastName);
+	}
+	
 	@AfterMethod
 	public void closeDown() {
 		driver.quit();
