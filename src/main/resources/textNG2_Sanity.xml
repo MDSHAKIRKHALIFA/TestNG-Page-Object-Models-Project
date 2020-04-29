@@ -9,6 +9,7 @@
 			<class name="com.crm.qa.allTestCases.LoginPageTest" />
 			<class name="com.crm.qa.allTestCases.HomePageTest" />
 			<class name="com.crm.qa.allTestCases.ContactsPageTest" />
+			<class name="com.crm.qa.allTestCases.DealsPageTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

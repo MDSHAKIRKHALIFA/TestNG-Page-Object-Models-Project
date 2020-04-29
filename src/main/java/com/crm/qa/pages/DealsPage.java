@@ -12,9 +12,32 @@ public class DealsPage  extends TestBase{
 
 	@FindBy(xpath="//span[contains(text(),'Deals')]")
 	WebElement dealLevel;
+	
+	@FindBy(xpath="//button[contains(text(),'New')]")
+	WebElement NewDealBtn;
+	
+	@FindBy(name="title")
+	WebElement NewDealTitle;
+	
+	@FindBy(xpath="//input[@name='probability']")
+	WebElement probabilityLink;
+	
+	@FindBy(name="next_step")
+	WebElement nestStepLink;
+	
+	@FindBy(xpath="//button[@class='ui linkedin button']")
+	WebElement DealsSave;
 
 	public boolean validateDealPageLevel() {
 		return dealLevel.isDisplayed();
+	}
+	
+	public void creatNewDeals(String title, String probability, String nextstep) {
+		NewDealBtn.click();
+		NewDealTitle.sendKeys(title);
+		probabilityLink.sendKeys(probability);
+		nestStepLink.sendKeys(nextstep);
+		DealsSave.click();
 	}
 
 }

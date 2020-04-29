@@ -2,6 +2,7 @@ package com.crm.qa.allTestCases;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.crm.qa.pages.DealsPage;
 import com.crm.qa.pages.HomePage;
@@ -14,6 +15,7 @@ public class DealsPageTest extends Testutil{
 	LoginPage loginpage;
 	Testutil testUtil;
 	DealsPage dealPage;
+	String sheetsName ="DealsPage";
 
 	public DealsPageTest() {
 		super();
@@ -34,6 +36,17 @@ public class DealsPageTest extends Testutil{
 	@Test(priority = 1)
 	public void varifyContactsPageTitleTest() {
 		Assert.assertTrue(dealPage.validateDealPageLevel(), "Deals level is misssing from the page");
+	}
+	
+	@DataProvider
+	public Object[][] getCRMTestData() {
+		Object data[][] = Testutil.getTestData(sheetsName);
+		return data;
+	}
+	
+	@Test(priority = 2, dataProvider="getCRMTestData")
+	public void CreateNewDealsTest(String Title, String probability, String nextStep) {
+		dealPage.creatNewDeals(Title, probability, nextStep);
 	}
 
 	@AfterMethod
