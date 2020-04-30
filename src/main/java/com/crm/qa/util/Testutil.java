@@ -30,7 +30,9 @@ public class Testutil extends TestBase{
 		}
 		try {
 			book = WorkbookFactory.create(file);
-		} catch (InvalidFormatException | IOException e) {
+		} catch (InvalidFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		sheet = book.getSheet(sheetName);
@@ -46,9 +48,9 @@ public class Testutil extends TestBase{
 		return data;
 	}
 	
-	public void switchToFrame() {
-		driver.switchTo().frame(" ");
-	}
+//	public void switchToFrame() {
+//		driver.switchTo().frame(" ");
+//	}
 	
 	public static void takeScreenshotAtEndOfTest() throws IOException {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
