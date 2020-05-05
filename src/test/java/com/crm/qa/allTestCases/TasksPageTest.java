@@ -34,6 +34,20 @@ public class TasksPageTest extends TestBase{
 	public void verifytaskslevel() {
 		Assert.assertTrue(tasksPage.verifytasksPageLevel());
 	}
+	
+	@Test
+	public void createNewTask() throws InterruptedException {
+		homepage.clickOnTasksLick();
+		
+		driver.navigate().refresh();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		driver.navigate().refresh();
+		tasksPage.creatNewTask("New Task");
+	}
 
 	@AfterMethod
 	public void closeDown() {
