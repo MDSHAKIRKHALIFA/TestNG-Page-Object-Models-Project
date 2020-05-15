@@ -58,4 +58,23 @@ public class Testutil extends TestBase{
 		FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
 	}
 }
+	
+	
+	
+//	public void afterScenarioEnd(Scenario scenario) {
+//
+//		if (scenario.isFailed()) {
+//			try {
+//				// Casting
+//				byte[] screenshot = ((TakesScreenshot) testHelper.getDriver()).getScreenshotAs(OutputType.BYTES);
+//				scenario.embed(screenshot, "image/png");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		System.out.println("Scenario Ended... ");
+//		testHelper.getDriver().close();
+//	}
+//}
 //Shakir

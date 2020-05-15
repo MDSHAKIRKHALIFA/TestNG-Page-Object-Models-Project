@@ -17,6 +17,9 @@ public class HomePage  extends TestBase{
 
 	@FindBy(xpath="//span[contains(text(),'Tasks')]")
 	WebElement TasksLink;
+	
+	@FindBy(xpath="//span[contains(text(),'Cases')]")
+	WebElement CasesLink;
 
 	public HomePage() {
 		PageFactory.initElements(driver, this);
@@ -44,6 +47,11 @@ public class HomePage  extends TestBase{
 	public TasksPage clickOnTasksLick() {
 		TasksLink.click();
 		return new TasksPage();
+	}
+	
+	public CasesPage clickonCases() {
+		CasesLink.click();
+		return new CasesPage();
 	}
 }
 //Shakir
